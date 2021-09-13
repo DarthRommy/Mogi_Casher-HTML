@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>模擬店のレジらしきもの</title>
+  <meta charset="utf-8">
+
+  <!--  icon  -->
+  <link rel="icon" href="./images/icon.png" type="image/png">
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- CSS Files-->
+  <link href="./paper-kit-2/assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./paper-kit-2/assets/css/paper-kit.css" />
+
+  <!--カスタム-->
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+  <!-- Loading... -->
+  <div id="loading">
+    <div class="spinner">
+      <div class="cube1"></div>
+      <div class="cube2"></div>
+    </div>
+  </div>
+  <!-- Navigation Area -->
+  <div id="navbar">
+    <div class="navigation-area">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100" style>
+        <div class="container">
+          <!-- Navigation Left-->
+          <div class="navbar-translate">
+            <a class="navbar-brand" href="#" rtitle="Mogi-Casher">Mogi Casher</a>
+          </div>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-transparent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+          <!-- Navigation Right -->
+          <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <p class="nav-link" id="clock"></p>
+              </li>
+              <li class="nav-item">
+                <!--<input id="load" type="file" style="display: none;" accept=".csv"/>
+                <label for="load" class="nav-link">Load CSV</label>-->
+                <a class="nav-link" href="#" onclick="dropFile()">Load CSV</a>
+              </li>
+              <li class="nav-item">
+                <input id="save" type="file" style="display: none;"/>
+                <label for="save" class="nav-link">Save as CSV</label>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Settings
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <div class="dropdown-item table-switch">
+                    <i class="nc-icon nc-tile-56"></i>
+                    <strong>Table</strong>
+                    <label style="margin-bottom: -3%; margin-left: 3em; margin-right: -2em;">
+                      <input type="checkbox" data-toggle="switch" data-on-color="danger" data-off-color="danger" id="chk">
+                      <span class="toggle"></span>
+                    </label>
+                  </div>
+                  <div class="dropdown-item" onclick="storeName()">
+                    <i class="nc-icon nc-circle-10"></i>
+                    <strong>Store Name</strong>
+                  </div>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-placement="bottom" href="https://github.com/DarthRommy/MogiCasher_HTML" target="_blank">
+                  <i class="fa fa-github"></i>
+                  <p>Watch Source</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Area -->
+  <div class="page_header_image" style="background-image: url('./paper-kit-2/assets/img/header.jpg');">
+    <div class="input-area">
+      <label for="inputBarcode">Barcode Input</label>
+      <form name="form1" onsubmit="return false;">
+        <div class="form-group">
+          <input type="text" class="form-control input-barcode" id="inputBarcode" aria-describedby="emailHelp" placeholder="Read Barcode">
+          <button type="button" class="btn btn-outline-danger btn-submit" id="submit-barcode" onclick="display_recent()">Submit</button>
+        </div>
+      </form>
+      <small id="recent-barcode" class="form-text text-muted">Recent Barcode</small>
+    </div>
+    <div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>
+
+    <!-- Modal No Input Error -->
+    <div class="modal fade bd-example-modal-sm error-no-input" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error-no-input">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">No Input</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <strong>You have no input.</strong>
+          </div>
+          <div class="modal-footer no-border-footer">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Oh Shit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Unexpected Input Error -->
+    <div class="modal fade bd-example-modal-sm error-unex-input" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Unexpected Input</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <strong>There is No Such Code in Database.</strong>
+          </div>
+          <div class="modal-footer no-border-footer">
+              <button type="button" class="btn btn-default btn-link" data-dismiss="modal">Oh Shit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Store Name -->
+    <div class="modal fade storeName" tabindex="-1" role="dialog" aria-hidden="false">
+      <div class="modal-dialog modal-register">
+        <div class="modal-content">
+          <div class="modal-header no-border-header text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h6 class="text-muted">WASSUP</h6>
+            <h3 class="modal-title text-center">MOGI????</h3>
+            <p>Set Your Store Name</p>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+                <label>Store Name</label>
+            <input type="text" value="" placeholder="Type here" class="form-control" id="inputStoreName"/>
+            </div>
+            <button class="btn btn-block btn-round" data-dismiss="modal"> Log in</button>
+          </div>
+          <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="clearStoreName()">Cancel</button>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Drop File -->
+    <div class="modal fade dropFile" tabindex="-1" role="dialog" aria-hidden="false">
+      <div class="modal-dialog modal-register">
+        <div class="modal-content" id="dropFile">
+          <div class="modal-header no-border-header text-center">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="deleteTable('preview-csv')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title text-center">Load CSV File</h3>
+            <p>You Have To Import When You Launch This App</p>
+          </div>
+          <div class="modal-body">
+            <div id="drop" class="dnd" data-dismiss="modal">
+              <strong>Drag & Drop Here</strong>
+              <strong style="color: #ff0000; display: none;" id="csv-only">Drop CSV</strong>
+            </div>
+            <div id="table" style="margin: auto; align-items: center;">
+              <div style="padding-left: 3em; padding-right: 3em;">
+                <blockquote class="blockquote">
+                  <p class="h6" style="margin: auto;">Preview</p>
+                </blockquote>
+              </div>
+            </div>
+            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table">Submit</button>
+          </div>
+          <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="deleteTable('preview-csv')">Cancel</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+<!--   Core JS Files   -->
+<script src="./paper-kit-2/assets/js/core/jquery.min.js"></script>
+<script src="./paper-kit-2/assets/js/core/popper.min.js"></script>
+<script src="./paper-kit-2/assets/js/core/bootstrap.min.js"></script>
+
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="./paper-kit-2/assets/js/plugins/bootstrap-switch.js"></script>
+
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="./paper-kit-2/assets/js/plugins/nouislider.min.js"></script>
+
+<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+<script src="./paper-kit-2/assets/js/plugins/moment.min.js"></script>
+<script src="./paper-kit-2/assets/js/plugins/bootstrap-datepicker.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+<!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+<script src="./paper-kit-2/assets/js/paper-kit.min.js"></script>
+
+<!-- Require.js 
+<script data-main="./scripts/main.js" src="./scrpits/require.js"></script>-->
+
+<!-- Custom JavaScript File-->
+<script src="./scrpits/main.js"></script>
+<script src="./scrpits/clock.js"></script>
+<script src="./scrpits/loading.js"></script>
+<script src="./scrpits/store.js"></script>
+<script src="./scrpits/read.js"></script>
+</html>
