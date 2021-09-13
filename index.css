@@ -128,7 +128,7 @@ th, td {
     margin: 5%;
 }
 
-#preview-csv {
+#preview-csv, #table-database {
     margin: auto;
     
 }
@@ -142,4 +142,12 @@ th, td {
 
 #dropFile {
     margin: auto;
+}
+
+#database {
+    margin-top: 2em;
+    position: fixed;
+    bottom: 0;
+    right: 1em;
+    visibility: hidden;
 }

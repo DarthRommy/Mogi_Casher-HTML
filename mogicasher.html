@@ -55,8 +55,9 @@
                 <p class="nav-link" id="clock"></p>
               </li>
               <li class="nav-item">
-                <!--<input id="load" type="file" style="display: none;" accept=".csv"/>
-                <label for="load" class="nav-link">Load CSV</label>-->
+                <p class="nav-link" id="name">N/A</p>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#" onclick="dropFile()">Load CSV</a>
               </li>
               <li class="nav-item">
@@ -71,7 +72,7 @@
                   <div class="dropdown-item table-switch">
                     <i class="nc-icon nc-tile-56"></i>
                     <strong>Table</strong>
-                    <label style="margin-bottom: -3%; margin-left: 3em; margin-right: -2em;">
+                    <label style="margin-bottom: -3%; margin-left: 3em; margin-right: -2em;" onclick="aaa()">
                       <input type="checkbox" data-toggle="switch" data-on-color="danger" data-off-color="danger" id="chk">
                       <span class="toggle"></span>
                     </label>
@@ -106,6 +107,29 @@
         </div>
       </form>
       <small id="recent-barcode" class="form-text text-muted">Recent Barcode</small>
+      <div class="card" id="database">
+        <div class="card-body">
+          <div style="margin:auto">
+            <div style="padding-left: 3em; padding-right: 3em;">
+              <blockquote class="blockquote">
+                <p class="h6" style="margin: auto;">Database</p>
+              </blockquote>
+            </div>
+            <table id="table-database">
+              <thead>
+                <tr><th>AAAA</th><th>BBBB</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>aaaa</td><td>bbbb</td></tr>
+              </tbody>
+              <tbody>
+                <tr><td>AaAa</td><td>bBbB</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      
     </div>
     <div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>
 
@@ -166,7 +190,7 @@
                 <label>Store Name</label>
             <input type="text" value="" placeholder="Type here" class="form-control" id="inputStoreName"/>
             </div>
-            <button class="btn btn-block btn-round" data-dismiss="modal"> Log in</button>
+            <button class="btn btn-block btn-round" data-dismiss="modal" onclick="submitStoreName()">Submit</button>
           </div>
           <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
             <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="clearStoreName()">Cancel</button>
@@ -230,15 +254,7 @@
 <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
 <script src="./paper-kit-2/assets/js/paper-kit.min.js"></script>
 
-<!-- Require.js 
-<script data-main="./scripts/main.js" src="./scrpits/require.js"></script>-->
-
 <!-- Custom JavaScript File-->
-<script src="./scrpits/reload.js"></script>
-<script src="./scrpits/clock.js"></script>
-<script src="./scrpits/loading.js"></script>
-<script src="./scrpits/store.js"></script>
-<script src="./scrpits/read.js"></script>
 <script src="./main.js"></script>
-<!--<script src="./scrpits/drop.js"></script>-->
+
 </html>
