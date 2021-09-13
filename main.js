@@ -1,14 +1,10 @@
 /** ----D&D---- */
-function dropFile() {
-    $(".dropFile").modal();
-};
-
 const dropArea = document.getElementById("drop");
 
 dropArea.addEventListener("dragover", function(e){
     e.preventDefault();
 });
-dropArea.addEventListener("dragleave", function(e){});
+
 dropArea.addEventListener("drop", function(e){
     e.preventDefault();
 
@@ -55,15 +51,8 @@ function getFiles(files) {
     
 };
 
-/** ----リロード禁止!---- 
-$(window).on('beforeunload', function(e) {
-    return 'Save Before Close';
-});
-*/
-
-/** ----配列⇒Table */
 function makeTable(data, divname){
-    
+    /** ----配列⇒Table */    
     var tableText=[];
 
     for(i=0;i<data.length;i++) {
@@ -86,3 +75,70 @@ function makeTable(data, divname){
     table.border = 1;
     document.getElementById(divname).appendChild(table);
 };
+
+function dropFile() {
+    $(".dropFile").modal();
+};
+
+/**---- 入力欄周り ----*/
+function display_recent(){
+    const recent = document.getElementById("recent-barcode");
+    const value = document.getElementById("inputBarcode").value;
+
+    const space = value.includes(" ")
+
+    if (value == ""){
+        $(".error-no-input").modal()
+    }else if (space == true){
+        $(".error-unex-input").modal()
+    }else{
+        recent.textContent = value;
+    }
+    document.getElementById("inputBarcode").value = "";
+};
+/**----そのままEnterを押すとなぜかリロードが入るのでイベントとして処理---- */
+window.document.onkeydown = function(event){
+    if (event.key === "Enter") {
+        display_recent()
+    }
+};
+
+/**---- 発団名入力欄 ----*/
+function storeName() {
+    $(".storeName").modal();
+};
+
+function clearStoreName() {
+    document.getElementById("inputStoreName").value = "";
+};
+
+/** ----ロード時アニメーション---- */
+window.onload = function() {
+    const spinner = document.getElementById('loading');
+    spinner.classList.add('loaded');
+};
+
+/** ----時計---- */
+function twoDigit(num) {
+    let ret;
+    if( num < 10 ) 
+      ret = "0" + num; 
+    else 
+      ret = num; 
+    return ret;
+}
+function showClock() {
+    let nowTime = new Date();
+    let nowHour = twoDigit( nowTime.getHours() );
+    let nowMin  = twoDigit( nowTime.getMinutes() );
+    let nowSec  = twoDigit( nowTime.getSeconds() );
+    let msg = nowHour + ":" + nowMin + ":" + nowSec;
+    document.getElementById("clock").innerHTML = msg;
+}
+setInterval('showClock()',1000);
+
+/** ----リロード禁止!---- 
+$(window).on('beforeunload', function(e) {
+    return 'Save Before Close';
+});
+*/
