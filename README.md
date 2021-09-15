@@ -3,4 +3,7 @@
 
 ### デザインテンプレート
 Paper Kit 2  
-[Link](https://demos.creative-tim.com/paper-kit-2/)
+[Link](https://demos.creative-tim.com/paper-kit-2/
+
+### Python版
+[Mogi_Casher](https://github.com/DarthRommy/Mogi_Casher)
