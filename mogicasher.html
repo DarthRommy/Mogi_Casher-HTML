@@ -52,27 +52,40 @@
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <p class="nav-link" id="clock"></p>
+                <div class="nav-link">
+                  <i class="nc-icon nc-watch-time nav-icon"></i>
+                  <p id="clock"></p>
+                </div>
               </li>
               <li class="nav-item">
-                <p class="nav-link" id="name">N/A</p>
+                <div class="nav-link">
+                  <i class="nc-icon nc-circle-10 nav-icon"></i>
+                  <p id="name">N/A</p>
+                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" onclick="dropFile()">Load CSV</a>
+                <div class="nav-link" href="#" onclick="dropFile()">
+                  <i class="nc-icon nc-cloud-upload-94 nav-icon"></i>
+                  <p>Load CSV</p>
+                </div>
               </li>
               <li class="nav-item">
-                <input id="save" type="file" style="display: none;"/>
-                <label for="save" class="nav-link">Save as CSV</label>
+                <div class="nav-link">
+                  <i class="nc-icon nc-cloud-download-93 nav-icon"></i>
+                  <!--<input id="save" type="file" style="display: none;"/>-->
+                  <label onclick="downloadCSV()">Save as CSV</label>
+                </div>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Settings
-                </a>
+                <div class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="nc-icon nc-settings-gear-65 nav-icon"></i>
+                  <p>Settings</p>
+                </div>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <div class="dropdown-item table-switch">
                     <i class="nc-icon nc-tile-56"></i>
                     <strong>Table</strong>
-                    <label style="margin-bottom: -3%; margin-left: 3em; margin-right: -2em;" onclick="aaa()">
+                    <label style="margin-bottom: -3%; margin-left: 3em; margin-right: -2em;">
                       <input type="checkbox" data-toggle="switch" data-on-color="danger" data-off-color="danger" id="chk">
                       <span class="toggle"></span>
                     </label>
@@ -81,12 +94,16 @@
                     <i class="nc-icon nc-circle-10"></i>
                     <strong>Store Name</strong>
                   </div>
+                  <div class="dropdown-item" onclick="reset()">
+                    <i class="nc-icon nc-button-power"></i>
+                    <strong>Reset All</strong>
+                  </div>
                 </div>
               </li>
               <li class="nav-item">
                 <a class="nav-link" data-placement="bottom" href="https://github.com/DarthRommy/Mogi_Casher-HTML" target="_blank">
                   <i class="fa fa-github"></i>
-                  <p>Watch Source</p>
+                  <p>Source</p>
                 </a>
               </li>
             </ul>
@@ -114,22 +131,12 @@
               <blockquote class="blockquote">
                 <p class="h6" style="margin: auto;">Database</p>
               </blockquote>
+              <p id="initMessage" class="h6">Warning: No Data Loaded</p>
             </div>
-            <table id="table-database">
-              <thead>
-                <tr><th>AAAA</th><th>BBBB</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>aaaa</td><td>bbbb</td></tr>
-              </tbody>
-              <tbody>
-                <tr><td>AaAa</td><td>bBbB</td></tr>
-              </tbody>
-            </table>
+            <div id="main-database"></div>
           </div>
         </div>
       </div>
-      
     </div>
     <div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>
 
@@ -214,6 +221,7 @@
             <div id="drop" class="dnd" data-dismiss="modal">
               <strong>Drag & Drop Here</strong>
               <strong style="color: #ff0000; display: none;" id="csv-only">Drop CSV</strong>
+              <strong style="color: #ff0000; display: none;" id="4-only">Unsupported File</strong>
             </div>
             <div id="table" style="margin: auto; align-items: center;">
               <div style="padding-left: 3em; padding-right: 3em;">
@@ -222,7 +230,7 @@
                 </blockquote>
               </div>
             </div>
-            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table">Submit</button>
+            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table" onclick="submitCSV()">Submit</button>
           </div>
           <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
             <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="deleteTable('preview-csv')">Cancel</button>

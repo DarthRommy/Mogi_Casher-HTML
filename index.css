@@ -151,3 +151,19 @@ th, td {
     right: 1em;
     visibility: hidden;
 }
+
+#table-database td{
+    background: #fff;
+}
+
+#table-database tr:nth-child(odd) td {
+    background: #eee;
+}
+
+th {
+    background: #eee;
+}
+
+.nav-icon {
+    margin-right: 0.5em;
+}

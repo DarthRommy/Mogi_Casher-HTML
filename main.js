@@ -1,3 +1,5 @@
+/** ----かなり混沌としております---- */
+
 /** ----D&D---- */
 function dropFile() {
     $(".dropFile").modal();
@@ -55,24 +57,60 @@ function getFiles(files) {
     
 };
 
+function submitCSV(){
+    const length = Number(sessionStorage.getItem("length"));
+    if (length == null || length == 0)
+        return
+    const tableArray = [];
+
+    for (i=0; i<length; i++) {
+        var key = "row" + i;
+
+        item = sessionStorage.getItem(key);
+        const csv = item.split("\r\n").map((row) => row.split(","));
+        tableArray.push(csv[0]);
+        
+    };
+
+    if (sessionStorage.getItem("length") != "0")
+        document.getElementById("initMessage").style.display = "none"
+
+    target = "main-database"
+    tableId = "table-database"
+    
+    deleteTable(tableId);
+
+    makeTable(tableArray, target, tableId);
+};
 
 function makeTable(data, target, tableId){
     /** ----配列⇒Table */    
+    try {
     var tableText=[];
-    console.log(data)
-
     for(i=0;i<data.length;i++) {
-        tableText.push(data[i]);
 
-        const onerow = data[i]
-        key = "row"+i
-        sessionStorage.setItem(key, onerow.join())
-    };
+        var current = data[i];
+
+        if (current.length != 4){
+            throw "Returning"
+        }
+
+        tableText.push(current);
+        
+        var key = "row"+String(i)
+        sessionStorage.setItem(key, current.join());
+        };
+    } catch (e) {
+        document.getElementById("4-only").style.display = "block"
+        return
+    }
+    
+    document.getElementById("4-only").style.display = "none"
 
     sessionStorage.setItem("length", String(data.length))
 
     var rows=[];
-    var table = document.createElement(target);
+    var table = document.createElement("table");
 
     for(i=0; i<tableText.length; i++) {
         // 行の追加
@@ -88,6 +126,7 @@ function makeTable(data, target, tableId){
     table.id = tableId;
     table.border = 1;
     document.getElementById(target).appendChild(table);
+            
 };
 
 /** ----時計---- */
@@ -119,16 +158,26 @@ function showBool() {
     }else{
         showTable.style.visibility = "hidden"
     }
-
-    console.log(boole)
-}
-setInterval("showBool()", 500)
+};
+setInterval("showBool()", 500);
 
 /** ----ロード時アニメーション---- */
-window.onload = function() {
+window.addEventListener("load", function() {
     const spinner = document.getElementById('loading');
     spinner.classList.add('loaded');
-};
+})
+
+window.addEventListener("load", function() {
+
+    submitCSV()
+
+    const dispName = document.getElementById("name");
+    var store = sessionStorage.getItem("store");
+    if (store == null) {
+        store = "N/A";
+    }
+    dispName.innerHTML = store;
+})
 
 /**---- 入力欄周り ----*/
 function display_recent(){
@@ -149,7 +198,7 @@ function display_recent(){
 /**----そのままEnterを押すとなぜかリロードが入るのでイベントとして処理---- */
 window.document.onkeydown = function(event){
     if (event.key === "Enter") {
-        display_recent()
+        display_recent();
     }
 };
 
@@ -159,17 +208,66 @@ function storeName() {
 };
 
 function clearStoreName() {
-    document.getElementById("inputStoreName").value = "";
+    target = document.getElementById("inputStoreName");
+    target.value = sessionStorage.getItem("store");
 };
 
 function submitStoreName(){
-    var storeName = document.getElementById("inputStoreName").value;
+    const store = document.getElementById("inputStoreName").value;
 
-    var dispName = document.getElementById("name");
-    dispName.innerHTML = storeName
+    const dispName = document.getElementById("name");
+    dispName.innerHTML = store;
+    sessionStorage.setItem("store", store);
 }
 
+/** ----CSVでダウンロード---- */
+function downloadCSV() {
+    date = new Date();
+    month = date.getMonth()+1;
+    day = date.getDate();
+    hour = date.getHours();
+    minute = date.getMinutes();
+    final = month+"/"+day+"_"+hour+":"+minute;
 
-function aaa(){
-    console.log("hello")
+    const data = [];
+    const length = Number(sessionStorage.getItem("length"))
+
+    for (i=0; i<length; i++) {
+        var key = "row" + i;
+
+        item = sessionStorage.getItem(key);
+        const csv = item.split("\r\n").map((row) => row.split(","));
+        data.push(csv[0]);
+        
+    };
+    const data_ = data.map((row) => row.join(",")).join("\r\n");
+
+    const store = sessionStorage.getItem("store");
+    store == null ? store_ = "default" : store_ = store
+    const filename = store_+"["+final+"].csv";
+
+    const blob = new Blob([data_], {type: "text/csv"});
+
+    const url = (window.URL || window.webkitURL).createObjectURL(blob);
+    const download = document.createElement("a");
+    download.href = url;
+    download.download = filename;
+    download.click();
+    (window.URL || window.webkitURL).revokeObjectURL(url);
+};
+
+/** ----リセット---- */
+function reset() {
+    const length = Number(sessionStorage.getItem("length"));
+    for (i=0; i<length; i++) {
+        const id = "row"+i;
+        sessionStorage.removeItem(id);
+    };
+    sessionStorage.removeItem("length");
+
+    sessionStorage.removeItem("store")
+
+    document.getElementById("initMessage").style.display = "block"
+
+    window.location.reload();
 }
