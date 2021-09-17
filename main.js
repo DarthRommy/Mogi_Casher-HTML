@@ -194,10 +194,18 @@ function display_recent(){
     const value = String(document.getElementById("inputBarcode").value);
     const codes = strToArray(sessionStorage.getItem("codes"))[0];
     const space = value.includes(" ");
+    const ifIncludes = function(){
+        try {
+            const ifincludes = codes.includes(value)
+            return !ifincludes
+        } catch(e) {
+            return true
+        }
+    }
 
     if (value == ""){
         $(".error-no-input").modal()
-    }else if (space == true || codes.includes(value) == false){
+    }else if (space == true || ifIncludes()){
         $(".error-unex-input").modal()
     }else{
         recent.textContent = value;
@@ -281,8 +289,12 @@ function reset() {
 
 /** ----文字列⇒配列---- */
 function strToArray (origin) {
-    const after = origin.split("\r\n").map((elem) => elem.split(","));
-    return after
+    try{
+        const after = origin.split("\r\n").map((elem) => elem.split(","));
+        return after
+    } catch(e) {
+        return []
+    }
 };
 
 /** ----配列⇒文字列---- */
