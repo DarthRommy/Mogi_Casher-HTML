@@ -5,12 +5,13 @@ function dropFile() {
     $(".dropFile").modal();
 };
 
+/** ドロップエリア */
 const dropArea = document.getElementById("drop");
 
+/** ドロップした時だけ処理を実行する */
 dropArea.addEventListener("dragover", function(e){
     e.preventDefault();
 });
-dropArea.addEventListener("dragleave", function(e){});
 dropArea.addEventListener("drop", function(e){
     e.preventDefault();
 
@@ -49,7 +50,7 @@ function getFiles(files) {
         reader.onload = (event) => {
             const text = event.target.result;
             
-            const csv = text.split("\r\n").map((row) => row.split(","));
+            const csv = strToArray(text);
 
             makeTable(csv, "table", "preview-csv")
         };
@@ -67,7 +68,7 @@ function submitCSV(){
         var key = "row" + i;
 
         item = sessionStorage.getItem(key);
-        const csv = item.split("\r\n").map((row) => row.split(","));
+        const csv = strToArray(item);
         tableArray.push(csv[0]);
         
     };
@@ -86,20 +87,28 @@ function submitCSV(){
 function makeTable(data, target, tableId){
     /** ----配列⇒Table */    
     try {
-    var tableText=[];
-    for(i=0;i<data.length;i++) {
+        var tableText = [];
+        var codes = [];
 
-        var current = data[i];
+        for(i=0;i<data.length;i++) {
 
-        if (current.length != 4){
-            throw "Returning"
-        }
+            var current = data[i];
 
-        tableText.push(current);
-        
-        var key = "row"+String(i)
-        sessionStorage.setItem(key, current.join());
+            if (i>0)
+                codes.push(data[i][1]);
+
+            if (current.length != 4){
+                throw "Returning"
+            };
+
+            tableText.push(current);
+            
+            var key = "row"+String(i)
+            sessionStorage.setItem(key, current.join());
         };
+
+        sessionStorage.setItem("codes", codes.join());
+
     } catch (e) {
         document.getElementById("4-only").style.display = "block"
         return
@@ -182,17 +191,24 @@ window.addEventListener("load", function() {
 /**---- 入力欄周り ----*/
 function display_recent(){
     const recent = document.getElementById("recent-barcode");
-    const value = document.getElementById("inputBarcode").value;
-
-    const space = value.includes(" ")
+    const value = String(document.getElementById("inputBarcode").value);
+    const codes = strToArray(sessionStorage.getItem("codes"))[0];
+    const space = value.includes(" ");
 
     if (value == ""){
         $(".error-no-input").modal()
-    }else if (space == true){
+    }else if (space == true || codes.includes(value) == false){
         $(".error-unex-input").modal()
     }else{
         recent.textContent = value;
-    }
+        const index = codes.indexOf(value);
+        const selectRow = strToArray(sessionStorage.getItem("row"+(index+1)))[0];
+
+        selectRow[3] = Number(selectRow[3])+1;
+        sessionStorage.setItem("row"+(index+1), arrayToStr(selectRow));
+
+        submitCSV();
+    };
     document.getElementById("inputBarcode").value = "";
 };
 /**----そのままEnterを押すとなぜかリロードが入るのでイベントとして処理---- */
@@ -223,11 +239,11 @@ function submitStoreName(){
 /** ----CSVでダウンロード---- */
 function downloadCSV() {
     date = new Date();
-    month = date.getMonth()+1;
-    day = date.getDate();
-    hour = date.getHours();
-    minute = date.getMinutes();
-    final = month+"/"+day+"_"+hour+":"+minute;
+    month = String(date.getMonth()+1).padStart(2,"0");
+    day = String(date.getDate()).padStart(2, "0");
+    hour = String(date.getHours()).padStart(2, "0");
+    minute = String(date.getMinutes()).padStart(2, "0");
+    final = month+""+day+"_"+hour+""+minute;
 
     const data = [];
     const length = Number(sessionStorage.getItem("length"))
@@ -236,11 +252,11 @@ function downloadCSV() {
         var key = "row" + i;
 
         item = sessionStorage.getItem(key);
-        const csv = item.split("\r\n").map((row) => row.split(","));
+        const csv = strToArray(item);
         data.push(csv[0]);
         
     };
-    const data_ = data.map((row) => row.join(",")).join("\r\n");
+    const data_ = arrayToStr(data);
 
     const store = sessionStorage.getItem("store");
     store == null ? store_ = "default" : store_ = store
@@ -258,16 +274,19 @@ function downloadCSV() {
 
 /** ----リセット---- */
 function reset() {
-    const length = Number(sessionStorage.getItem("length"));
-    for (i=0; i<length; i++) {
-        const id = "row"+i;
-        sessionStorage.removeItem(id);
-    };
-    sessionStorage.removeItem("length");
-
-    sessionStorage.removeItem("store")
-
-    document.getElementById("initMessage").style.display = "block"
-
+    sessionStorage.clear();
+    /** 演出上リロード */
     window.location.reload();
-}
+};
+
+/** ----文字列⇒配列---- */
+function strToArray (origin) {
+    const after = origin.split("\r\n").map((elem) => elem.split(","));
+    return after
+};
+
+/** ----配列⇒文字列---- */
+function arrayToStr (origin) {
+    const after = origin.join(",");
+    return after;
+};
