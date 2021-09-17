@@ -287,6 +287,11 @@ function strToArray (origin) {
 
 /** ----配列⇒文字列---- */
 function arrayToStr (origin) {
-    const after = origin.join(",");
-    return after;
+    try {
+        const after = origin.map((elem) => elem.join(",")).join("\r\n");
+        return after;
+    } catch(e) {
+        const after = origin.join(",");
+        return after;
+    }
 };
