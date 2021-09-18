@@ -1,4 +1,4 @@
-![Current Version](https://img.shields.io/badge/MogiCasher[HTML-Edition]-0.5.0-blue)
+![Current Version](https://img.shields.io/badge/MogiCasher[HTML_Edition]-0.5.0-blue)
 
 # 模擬部のレジ[HTML版]
 アプデするたびにいちいちexe化しないと配れないのが面倒くさいというわけで、HTMLに移植してみる。  
