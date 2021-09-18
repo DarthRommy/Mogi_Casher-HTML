@@ -1,3 +1,5 @@
+![Current Version](https://img.shields.io/badge/MogiCasher[HTML Edition]-0.5.0-blue)
+
 # 模擬部のレジ[HTML版]
 アプデするたびにいちいちexe化しないと配れないのが面倒くさいというわけで、HTMLに移植してみる。  
 プレビュー公開中! [Here](https://mogi-htmledition.vercel.app)
