@@ -123,7 +123,11 @@
           <button type="button" class="btn btn-outline-danger btn-submit" id="submit-barcode" onclick="display_recent()">Submit</button>
         </div>
       </form>
-      <small id="recent-barcode" class="form-text text-muted">Recent Barcode</small>
+      <small id="recent-barcode" class="form-text text-muted" style="display: none;">Recent Barcode</small>
+      <div>
+        <i class="fa fa-money fa-2x" style="color: rgb(253, 85, 55);"></i>
+        <h6 class="inline" style="font-size: 2em; color: #fff; margin-left: 0.5em;" id="total">¥</h6>
+      </div>
       <div class="card" id="database">
         <div class="card-body">
           <div style="margin:auto">
@@ -138,7 +142,7 @@
         </div>
       </div>
     </div>
-    <div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>
+    <!--<div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>-->
 
     <!-- Modal No Input Error -->
     <div class="modal fade bd-example-modal-sm error-no-input" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="error-no-input">
@@ -200,7 +204,7 @@
             <button class="btn btn-block btn-round" data-dismiss="modal" onclick="submitStoreName()">Submit</button>
           </div>
           <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
-            <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="clearStoreName()">Cancel</button>
+            <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="cancelStoreName()">Cancel</button>
         </div>
         </div>
       </div>
@@ -230,39 +234,39 @@
                 </blockquote>
               </div>
             </div>
-            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table" onclick="submitCSV()">Submit</button>
+            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table" onclick="submitCSV(false)">Submit</button>
           </div>
           <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
             <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="deleteTable('preview-csv')">Cancel</button>
-        </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
   
+  <!--   Core JS Files   -->
+  <script src="./paper-kit-2/assets/js/core/jquery.min.js"></script>
+  <script src="./paper-kit-2/assets/js/core/popper.min.js"></script>
+  <script src="./paper-kit-2/assets/js/core/bootstrap.min.js"></script>
+
+  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+  <script src="./paper-kit-2/assets/js/plugins/bootstrap-switch.js"></script>
+
+  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+  <script src="./paper-kit-2/assets/js/plugins/nouislider.min.js"></script>
+
+  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+  <script src="./paper-kit-2/assets/js/plugins/moment.min.js"></script>
+  <script src="./paper-kit-2/assets/js/plugins/bootstrap-datepicker.js"></script>
+
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+
+  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./paper-kit-2/assets/js/paper-kit.min.js"></script>
+
+  <!-- Custom JavaScript File-->
+  <script src="./main.js"></script>
 </body>
-<!--   Core JS Files   -->
-<script src="./paper-kit-2/assets/js/core/jquery.min.js"></script>
-<script src="./paper-kit-2/assets/js/core/popper.min.js"></script>
-<script src="./paper-kit-2/assets/js/core/bootstrap.min.js"></script>
-
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="./paper-kit-2/assets/js/plugins/bootstrap-switch.js"></script>
-
-<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="./paper-kit-2/assets/js/plugins/nouislider.min.js"></script>
-
-<!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-<script src="./paper-kit-2/assets/js/plugins/moment.min.js"></script>
-<script src="./paper-kit-2/assets/js/plugins/bootstrap-datepicker.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
-<!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-<script src="./paper-kit-2/assets/js/paper-kit.min.js"></script>
-
-<!-- Custom JavaScript File-->
-<script src="./main.js"></script>
 
 </html>

@@ -37,6 +37,7 @@
 
 .form-group {
     display: flex;
+    margin-bottom: 0em;
 }
 
 .btn-submit {
@@ -128,9 +129,8 @@ th, td {
     margin: 5%;
 }
 
-#preview-csv, #table-database {
+#preview-csv, #table-database, #main-database {
     margin: auto;
-    
 }
 
 #preview-csv td {
@@ -142,6 +142,7 @@ th, td {
 
 #dropFile {
     margin: auto;
+    width: 120%;
 }
 
 #database {
@@ -166,4 +167,13 @@ th {
 
 .nav-icon {
     margin-right: 0.5em;
+}
+
+.centerize {
+    margin: auto;
+    text-align: center;
+}
+
+.inline {
+    display: inline;
 }
