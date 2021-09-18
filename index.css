@@ -50,7 +50,7 @@
 }
 
 th, td {
-    padding: 20px 20px;
+    padding: 10px 10px;
 }
 
 #loading {
@@ -145,16 +145,31 @@ th, td {
     width: 120%;
 }
 
-#database {
-    margin-top: 2em;
+#csvIO, #database {
     position: fixed;
     bottom: 0;
+}
+
+#database {
+    margin-top: 2em;
     right: 1em;
     visibility: hidden;
 }
 
+#csvIO {
+    left: 1em;
+    background-color: rgba(255, 255, 255, 0.171);
+    opacity: 20%;
+}
+
+#csvIO:hover {
+    opacity: 100%;
+}
+
 #table-database td{
     background: #fff;
+    font-size: 1em;
+    font-weight: 500;
 }
 
 #table-database tr:nth-child(odd) td {
@@ -176,4 +191,79 @@ th {
 
 .inline {
     display: inline;
+}
+
+#main-table-area {
+    margin: 0;
+    padding: 0;
+}
+
+.main-table {
+    border-radius: 10px;
+    border-collapse: collapse;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main-table thead tr {
+    height: 60px;
+    background-color: #36304a;
+}
+
+.main-table tbody tr{
+    height: 50px;
+}
+
+.main-table tr:nth-child(even) {
+    background-color: #f5f5f5;
+}
+
+.main-table td {
+    font-weight: bolder;
+}
+
+.main-table th {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0);
+    line-height: 1.2;
+    font-size: 14px;
+}
+
+.column1 {
+    width: 100px;
+    padding-left: 20px;
+}
+
+.column2 {
+    width: 10em;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.column3 {
+    width: 60px;
+    text-align: right;
+}
+
+.column4 {
+    width: 5px;
+    text-align: right;
+}
+
+.column5 {
+    width: 100px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+#database2 {
+    position: fixed;
+    bottom: 0;
+    right: 1em;
+    opacity: 0.4;
+}
+
+#database2:hover {
+    opacity: 1;
 }

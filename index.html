@@ -63,19 +63,6 @@
                   <p id="name">N/A</p>
                 </div>
               </li>
-              <li class="nav-item">
-                <div class="nav-link" href="#" onclick="dropFile()">
-                  <i class="nc-icon nc-cloud-upload-94 nav-icon"></i>
-                  <p>Load CSV</p>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="nav-link">
-                  <i class="nc-icon nc-cloud-download-93 nav-icon"></i>
-                  <!--<input id="save" type="file" style="display: none;"/>-->
-                  <label onclick="downloadCSV()">Save as CSV</label>
-                </div>
-              </li>
               <li class="nav-item dropdown">
                 <div class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="nc-icon nc-settings-gear-65 nav-icon"></i>
@@ -128,6 +115,22 @@
         <i class="fa fa-money fa-2x" style="color: rgb(253, 85, 55);"></i>
         <h6 class="inline" style="font-size: 2em; color: #fff; margin-left: 0.5em;" id="total">¥</h6>
       </div>
+      <div class="card card-nav-tabs" id="csvIO">
+        <div class="card-body" style="padding: 0.7em;">
+          <button type="button" class="btn btn-outline-danger" onclick="dropFile()">
+            <i class="nc-icon nc-cloud-upload-94 inline"></i>
+            <p class="h6 inline">load csv</p>
+          </button>
+          <button type="button" class="btn btn-outline-info" onclick="downloadCSV()">
+            <i class="nc-icon nc-cloud-download-93 inline"></i>
+            <p class="h6 inline">SAVE AS CSV</p>
+          </button>
+          <button type="button" class="btn btn-outline-default" onclick="submitCSVMain(true)">
+            <i class="nc-icon nc-bulb-63 inline"></i>
+            <p class="h6 inline">TEST</p>
+          </button>
+        </div>
+      </div>
       <div class="card" id="database">
         <div class="card-body">
           <div style="margin:auto">
@@ -140,6 +143,11 @@
             <div id="main-database"></div>
           </div>
         </div>
+      </div>
+
+      <!-- MainTable -->
+      <div class="card" id="database2">
+        <div class="card-body" id="main-table-area"></div>
       </div>
     </div>
     <!--<div class="moving-clouds" style="background-image: url('./paper-kit-2/assets/img/clouds.png');"></div>-->
@@ -267,6 +275,7 @@
 
   <!-- Custom JavaScript File-->
   <script src="./main.js"></script>
+  <script src="./beta.js"></script>
 </body>
 
 </html>
