@@ -40,23 +40,38 @@ function makeMainTable(data, target, tableID, load) {
             // codesにコード一覧を登録
             codes.push(elem[1]);
 
-            // 各列をフォーマット
+            // 合計金額を追加
             const sales = Number(elem[2])*Number(elem[3]);
+            elem[4] = sales;
             total += sales;
 
-            elem[1] = "#" + elem[1];
-            elem[2] = "¥" + elem[2];
-            elem[4] = "¥" + sales;
-
         };
-        
-        data.push(["TOTAL", "", "", "", "¥" + total])
-        console.log(data)
+
+        document.getElementById("4-only").style.display = "none";
 
     } catch (e) {
-        console.log(e);
+        document.getElementById("4-only").style.display = "block";
         return;
     };
+
+    // dataをsessionStorageに保存
+    sessionStorage.setItem("database", arrayToStr(data));
+    sessionStorage.setItem("codes", codes);
+
+    // input下部の総計に反映
+    document.getElementById("total").innerHTML = "¥" + total
+    
+    // 各列をフォーマット
+    for (i=0; i<data.length; i++) {
+        let elem = data[i];
+
+        elem[1] = "#" + elem[1];
+        elem[2] = "¥" + elem[2];
+        elem[4] = "¥" + elem[4];
+    }
+
+    // Table用にdataに最下段を追加
+    data.push(["TOTAL", "", "", "", "¥" + total]);
 
     // tbody作成
     const tbody = table.createTBody();
@@ -74,19 +89,19 @@ function makeMainTable(data, target, tableID, load) {
             tdoc.innerHTML = data[i][j];
 
             row.appendChild(tdoc)
-        }
-    }
-
+        };
+    };
     
 };
 
 function submitCSVMain(load){
     // ------売上表示のTableを作成する------
 
-    const array = [["Juice", "76671487", "100", "437"], ["Game", "20380298", "100", "359"], ["Goods(200)", "65814888", "200", "226"]];
+    //const array = [["Juice", "76671487", "100", "437"], ["Game", "20380298", "100", "359"], ["Goods(200)", "65814888", "200", "226"]];
+    const array = strToArray(sessionStorage.getItem("database"));
 
-    target = "main-table-area"
-    tableID = "main-table"
+    target = "main-table-area";
+    tableID = "main-table";
     
     deleteTables(tableID);
 
@@ -103,5 +118,82 @@ function deleteTables(id){
 
 // リロード時にTableを再生成
 window.addEventListener("load", function() {
-    submitCSVMain(true)
+    submitCSVMain(false)
 })
+
+// ------ドロップエリア------
+const dropArea = document.getElementById("drop");
+
+// ドロップした時だけ処理を実行する
+dropArea.addEventListener("dragover", function(e){
+    e.preventDefault();
+});
+
+dropArea.addEventListener("drop", function(e){
+    e.preventDefault();
+
+    // ファイルを取得
+    const file = e.dataTransfer.files;
+    const filename = function() {
+        const ext = file[0]["name"].split(".").pop();
+        return ext;
+    };
+
+    // CSVファイルの場合表を更新
+    if (filename() == "csv"){
+
+        document.getElementById("csv-only").style.display = "none";
+
+        deleteTables("preview-table");
+        getFile(file);
+
+    }else{
+        document.getElementById("csv-only").style.display = "block";
+    };
+});
+
+function getFile(files) {
+    for (const file of files) {
+        const reader = new FileReader();
+
+        //テキスト形式で読み込む
+        reader.readAsText(file);
+
+        // テキストの読み込みが完了した際のイベントを登録
+        reader.onload = (event) => {
+            const text = event.target.result;
+            
+            const csv = strToArray(text);
+            const trash = csv.shift();
+
+            makeMainTable(csv, "preview-table-area", "preview-table", true);
+        };
+    };
+    
+};
+
+// ----CSVでダウンロード----
+function dlCSV() {
+    date = new Date();
+    month = String(date.getMonth()+1).padStart(2,"0");
+    day = String(date.getDate()).padStart(2, "0");
+    hour = String(date.getHours()).padStart(2, "0");
+    minute = String(date.getMinutes()).padStart(2, "0");
+    final = month+""+day+"_"+hour+""+minute;
+
+    const data = sessionStorage.getItem("database");
+    console.log(data);
+
+    const store = sessionStorage.getItem("store");
+    store == null ? store_ = "default" : store_ = store
+    const filename = store_+"["+final+"].csv";
+
+    const blob = new Blob([data], {type: "text/csv"});
+
+    const url = (window.URL || window.webkitURL).createObjectURL(blob);
+    const download = document.createElement("a");
+    download.href = url;
+    download.download = filename;
+    download.click();
+    (window.URL || window.webkitURL).revokeObjectURL(url);
+};

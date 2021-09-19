@@ -121,11 +121,11 @@
             <i class="nc-icon nc-cloud-upload-94 inline"></i>
             <p class="h6 inline">load csv</p>
           </button>
-          <button type="button" class="btn btn-outline-info" onclick="downloadCSV()">
+          <button type="button" class="btn btn-outline-info" onclick="dlCSV()">
             <i class="nc-icon nc-cloud-download-93 inline"></i>
             <p class="h6 inline">SAVE AS CSV</p>
           </button>
-          <button type="button" class="btn btn-outline-default" onclick="submitCSVMain(true)">
+          <button type="button" class="btn btn-outline-default" onclick="submitCSVMain(false)" style="display: none;">
             <i class="nc-icon nc-bulb-63 inline"></i>
             <p class="h6 inline">TEST</p>
           </button>
@@ -235,14 +235,14 @@
               <strong style="color: #ff0000; display: none;" id="csv-only">Drop CSV</strong>
               <strong style="color: #ff0000; display: none;" id="4-only">Unsupported File</strong>
             </div>
-            <div id="table" style="margin: auto; align-items: center;">
+            <div id="preview-table-area" style="margin: auto; align-items: center;">
               <div style="padding-left: 3em; padding-right: 3em;">
                 <blockquote class="blockquote">
                   <p class="h6" style="margin: auto;">Preview</p>
                 </blockquote>
               </div>
             </div>
-            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table" onclick="submitCSV(false)">Submit</button>
+            <button class="btn btn-block btn-round" data-dismiss="modal" style="margin-top: 2em;" id="submit-table" onclick="submitCSVMain(false)">Submit</button>
           </div>
           <div class="modal-footer no-border-footer" style="margin-bottom: 0; margin-top: 0; padding: 0;">
             <button type="button" class="btn btn-default btn-link" data-dismiss="modal" onclick="deleteTable('preview-csv')">Cancel</button>

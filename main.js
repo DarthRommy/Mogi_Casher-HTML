@@ -5,38 +5,13 @@ function dropFile() {
     $(".dropFile").modal();
 };
 
-/** ドロップエリア */
-const dropArea = document.getElementById("drop");
 
-/** ドロップした時だけ処理を実行する */
-dropArea.addEventListener("dragover", function(e){
-    e.preventDefault();
-});
-dropArea.addEventListener("drop", function(e){
-    e.preventDefault();
-
-    var file = e.dataTransfer.files;
-    filename = file[0]["name"]
-    if (fileExt(filename) == "csv"){
-        document.getElementById("csv-only").style.display = "none";
-        deleteTable("preview-csv")
-        getFiles(file);
-
-    }else{
-        document.getElementById("csv-only").style.display = "block";
-    };
-});
 
 function deleteTable(id){
     const elem = document.getElementById(id)
     if (elem != null){
         elem.remove();
     };
-};
-
-function fileExt(filename){
-    const ext = filename.split(".").pop();
-    return ext
 };
 
 function getFiles(files) {
@@ -227,12 +202,14 @@ function display_recent(){
     }else{
         recent.textContent = value;
         const index = codes.indexOf(value);
-        const selectRow = strToArray(sessionStorage.getItem("row"+(index+1)))[0];
+
+        const database = strToArray(sessionStorage.getItem("database"));
+        const selectRow = database[index];
 
         selectRow[3] = Number(selectRow[3])+1;
-        sessionStorage.setItem("row"+(index+1), arrayToStr(selectRow));
+        sessionStorage.setItem("database", arrayToStr(database));
 
-        submitCSV(false);
+        submitCSVMain(false);
     };
     document.getElementById("inputBarcode").value = "";
 };
