@@ -203,8 +203,13 @@ function dlCSV() {
     minute = String(date.getMinutes()).padStart(2, "0");
     final = month+""+day+"_"+hour+""+minute;
 
-    const data = sessionStorage.getItem("database");
-    console.log(data);
+    // 売り上げを削除
+    const pre_data = strToArray(sessionStorage.getItem("database"));
+    for (i=0; i<pre_data.length; i++) {
+        pre_data[i].pop();
+    };
+
+    const data = arrayToStr(pre_data);
 
     const store = sessionStorage.getItem("store");
     store == null ? store_ = "default" : store_ = store
