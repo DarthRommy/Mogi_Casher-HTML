@@ -33,6 +33,7 @@
 
 .input-area {
     z-index: 999;
+    margin-left: 1em;
 }
 
 .form-group {
@@ -196,6 +197,10 @@ th {
 #main-table-area, #preview-table-area {
     margin: 0;
     padding: 0;
+}
+
+.hidden {
+    display: none;
 }
 
 .main-table, .preview-table {

@@ -1,3 +1,10 @@
+// あまりにも長くなりすぎるので分解しました
+
+// CSV読み込み画面を表示
+function dropFile() {
+    $(".dropFile").modal();
+};
+
 function makeMainTable(data, target, tableID, load) {
     const element = document.getElementById(target);
 
@@ -30,21 +37,27 @@ function makeMainTable(data, target, tableID, load) {
     let total = 0;
 
     try{
-        for (i=0; i<data.length; i++) {
-            let elem = data[i];
-            
-            // elemがCSV読み込み時は4列以外なら、それ以外は5列以外ならブロック
-            if ((elem.length != 4 && load) || (elem.length != 5 && !load))
-                throw "Returning";
+        // databaseがない時にもTableを表示
+        if (typeof data === "undefined" || data[0] == "") {
+            data = [];
 
-            // codesにコード一覧を登録
-            codes.push(elem[1]);
+        } else {
+            for (i=0; i<data.length; i++) {
+                let elem = data[i];
+                
+                // elemがCSV読み込み時は4列以外なら、それ以外は5列以外ならブロック
+                if ((elem.length != 4 && load) || (elem.length != 5 && !load))
+                    throw "Returning";
 
-            // 合計金額を追加
-            const sales = Number(elem[2])*Number(elem[3]);
-            elem[4] = sales;
-            total += sales;
+                // codesにコード一覧を登録
+                codes.push(elem[1]);
 
+                // 合計金額を追加
+                const sales = Number(elem[2])*Number(elem[3]);
+                elem[4] = sales;
+                total += sales;
+
+            };
         };
 
         document.getElementById("4-only").style.display = "none";
@@ -69,6 +82,7 @@ function makeMainTable(data, target, tableID, load) {
         elem[2] = "¥" + elem[2];
         elem[4] = "¥" + elem[4];
     }
+
 
     // Table用にdataに最下段を追加
     data.push(["TOTAL", "", "", "", "¥" + total]);
@@ -96,8 +110,6 @@ function makeMainTable(data, target, tableID, load) {
 
 function submitCSVMain(load){
     // ------売上表示のTableを作成する------
-
-    //const array = [["Juice", "76671487", "100", "437"], ["Game", "20380298", "100", "359"], ["Goods(200)", "65814888", "200", "226"]];
     const array = strToArray(sessionStorage.getItem("database"));
 
     target = "main-table-area";
@@ -118,8 +130,17 @@ function deleteTables(id){
 
 // リロード時にTableを再生成
 window.addEventListener("load", function() {
-    submitCSVMain(false)
-})
+    submitCSVMain(false);
+
+    // 発団名を自動読み込み
+    const dispName = document.getElementById("name");
+    let store = sessionStorage.getItem("store");
+    if (store == null) {
+        store = "N/A";
+    };
+
+    dispName.innerHTML = store;
+});
 
 // ------ドロップエリア------
 const dropArea = document.getElementById("drop");
@@ -152,6 +173,7 @@ dropArea.addEventListener("drop", function(e){
     };
 });
 
+// ドロップしたファイルから配列を取得
 function getFile(files) {
     for (const file of files) {
         const reader = new FileReader();
