@@ -53,7 +53,7 @@ TAG,CODE,PRICE,UNITS
 
 ## 実際に使ってみる
 
-# 諸連絡
+# 諸連絡(プログラマー向け)
 ## ファイル構成
 以下のファイル構成で動いています。
 ```
@@ -82,3 +82,23 @@ dir
 [Visit Mogi_Casher](https://github.com/DarthRommy/Mogi_Casher)
 
 ![casher_python](https://user-images.githubusercontent.com/88261399/133916512-8828953a-bc06-4886-a9f9-64eeee050127.png)
+
+## 2022年の担当者へ
+おそらく来年のソフト担当者は俺みたいにちょっとプログラミングで遊んでみてますどころやない優秀なガチ勢やと思う。そんな君にはぜひ模擬部の売り上げ管理システムを構築してほしいのだ。
+
+なんでお前が作ってないねんって？  
+というのも、そもそも俺がプログラミング初心者だからだ。どう初心者かって？引き受けた時の俺のプログラミングスキルは
+```
+def aaaa(a):
+  for x in a:
+    print (x)
+  
+print (aaaa([0,1,2,3,4]))
+```
+というレベルだったのだ。にもかかわらずなぜ快諾したのか。それは大きな謎である
+
+初めてチケットの注文にGoogle Formを使うことになってのごたごたもあるけど、もちろんFormのシステムを知らない俺はまず集計がどうSpreadsheetに反映されるかをググり、さらには関数で整理するためにSpreadsheetの使い方までググるレベルだった。そういうわけで、見に来た人が何が書かれているかぱっと見で理解できない難解なシートが出来てしまった。
+
+![sheet](https://user-images.githubusercontent.com/88261399/134006128-af522285-8fa8-403b-82d0-d0be3769bd82.png)
+![nohara](https://user-images.githubusercontent.com/88261399/134006375-f93d709f-5ab0-45e4-8d72-89abb88f8afc.jpg)
+
