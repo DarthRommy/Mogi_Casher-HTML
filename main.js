@@ -134,13 +134,22 @@ function changeLayout() {
     const height = window.innerHeight;
 
     const mainTable = document.getElementById("main-table-area");
+    const ppkBtn = document.getElementById("ppkBtn");
 
     // main-tableの表示/非表示
     if (width < 800 || (width < 1340 && height < 800) || height < 470) {
         mainTable.classList.add("hidden");
     } else {
-        mainTable.classList.remove("hidden")
-    }
+        mainTable.classList.remove("hidden");
+    };
+
+    // Paper Kit 2ボタンのスタイルを変更
+    if (width < 992) {
+        ppkBtn.classList.add("btn-danger");
+        ppkBtn.classList.remove("btn-outline-danger")
+    } else {
+        ppkBtn.classList.remove("btn-danger");
+        ppkBtn.classList.add("btn-outline-danger")};
 };
 
 // 読み込み時に実行
@@ -151,4 +160,4 @@ window.addEventListener("load", function(){
 // サイズ変更時に実行
 window.addEventListener("resize", function() {
     changeLayout();
-})
+});
