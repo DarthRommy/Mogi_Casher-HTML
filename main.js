@@ -161,3 +161,15 @@ window.addEventListener("load", function(){
 window.addEventListener("resize", function() {
     changeLayout();
 });
+
+// vercel上ではプレビュー通知
+function hostName() {
+    const hostname = location.hostname;
+
+    if ( hostname.match("vercel.app"))
+        $("#notice").modal();
+};
+
+window.addEventListener("load", function(){
+    hostName();
+})
