@@ -161,3 +161,9 @@ window.addEventListener("load", function(){
 window.addEventListener("resize", function() {
     changeLayout();
 });
+
+function hostname() {
+    console.log(location.hostname);
+};
+
+setInterval("hostname()", 1000);
