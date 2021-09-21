@@ -172,4 +172,4 @@ function hostName() {
 
 window.addEventListener("load", function(){
     hostName();
-})
+});
