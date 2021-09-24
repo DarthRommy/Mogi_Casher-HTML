@@ -146,7 +146,7 @@ function changeLayout() {
     // Paper Kit 2ボタンのスタイルを変更
     if (width < 992) {
         ppkBtn.classList.add("btn-danger");
-        ppkBtn.classList.remove("btn-outline-danger")
+        ppkBtn.classList.remove("btn-outline-danger");
     } else {
         ppkBtn.classList.remove("btn-danger");
         ppkBtn.classList.add("btn-outline-danger")};

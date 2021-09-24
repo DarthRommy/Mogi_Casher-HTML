@@ -209,6 +209,10 @@ function dlCSV() {
         pre_data[i].pop();
     };
 
+    if (pre_data[0].length == 0)
+        return
+
+    pre_data.unshift(["TAG", "CODE", "PRICE", "UNITS"]);
     const data = arrayToStr(pre_data);
 
     const store = sessionStorage.getItem("store");
