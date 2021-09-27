@@ -267,3 +267,15 @@ th {
 #database2:hover {
     opacity: 1;
 }
+
+#credit {
+    bottom: 0;
+    opacity: 0.4;
+    position: fixed;
+    padding: 0%;
+    background-color: #2e2e2e;
+}
+
+#credit:hover {
+    opacity: 1;
+}
