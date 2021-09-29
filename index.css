@@ -268,7 +268,7 @@ th {
     opacity: 1;
 }
 
-#credit {
+.credit {
     bottom: 0;
     opacity: 0.4;
     position: fixed;
@@ -276,6 +276,6 @@ th {
     background-color: #2e2e2e;
 }
 
-#credit:hover {
+.credit:hover {
     opacity: 1;
 }
