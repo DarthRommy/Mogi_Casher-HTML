@@ -2,8 +2,7 @@
 
 // タスクキルを阻止
 window.onbeforeunload = function(e) {
-    console.log("hi")
-    e.returnValue = "Hello There";
+    e.returnValue = "";
 };
 
 // ----時計----
