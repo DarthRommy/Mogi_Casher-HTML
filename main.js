@@ -1,5 +1,11 @@
 /** ----かなり混沌としております---- */
 
+// タスクキルを阻止
+window.onbeforeunload = function(e) {
+    console.log("hi")
+    e.returnValue = "Hello There";
+};
+
 // ----時計----
 function twoDigit(num) {
     let ret;
