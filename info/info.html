@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>レジらしきものの取説</title>
+        <meta charset="utf-8">
+
+        <!--  icon  -->
+        <link rel="icon" href="../images/icon.png" type="image/png">
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <!--     Fonts and icons     -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
+
+        <!-- CSS Files-->
+        <link href="../paper-kit-2/assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="../paper-kit-2/assets/css/paper-kit.css" />
+        <link rel="stylesheet" href="../index.css" />
+        <link rel="stylesheet" href="./info.css" />
+
+    </head>
+    <body>
+        <div class="adapt">
+            <!-- Loading... -->
+            <div id="loading">
+                <div class="spinner">
+                    <div class="cube1"></div>
+                    <div class="cube2"></div>
+                </div>
+            </div>
+            <!-- Navigation -->
+            <div id="navbar">
+                <div class="navigation-area">
+                    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="100" style>
+                        <div class="container">
+                        <!-- Navigation Left-->
+                            <div class="navbar-translate">
+                                <a class="navbar-brand" href="../index.html" rtitle="Mogi-Casher" onclick="window.close()">Mogi Casher</a>
+                                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar-transparent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-bar bar1"></span>
+                                    <span class="navbar-toggler-bar bar2"></span>
+                                    <span class="navbar-toggler-bar bar3"></span>
+                                </button>
+                            </div>
+                            <!-- Navigation Right -->
+                            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item">
+                                        <div class="nav-link">
+                                        <i class="nc-icon nc-watch-time nav-icon"></i>
+                                        <p id="clock"></p>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-placement="bottom" href="https://github.com/DarthRommy/Mogi_Casher-HTML" target="_blank">
+                                            <i class="fa fa-github"></i>
+                                            <p>Source</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-placement="bottom" href="#">
+                                            #Help Page
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Area -->
+            <div>
+                <!-- Header -->
+                <div class="page_header_image" style="background-image: url('../paper-kit-2/assets/img/header.jpg');">
+                    <p id="Header">Help Guide</p>
+                    <p class="h6" style="color: #fff; margin: auto;" id="Made">Made By Rommy</p>
+                </div>
+
+                <!-- Content -->
+                <div class="main">
+                    <div class="Title">
+                        <div class="content">
+                            <h2>使い方</h2>
+                            <p>動画メインで解説します。</p>
+                        </div>
+                    </div>
+                    <div class="Launch">
+                        <div class="content">
+                            <h3>起動</h3>
+                            <p>デスクトップに作ってある<strong> "Casher" </strong>ショートカットをダブルクリックしてね</p>
+                        </div>
+                    </div>
+                    <div class="Load">
+                        <div class="content">
+                            <h3>データを読み込む</h3>
+                            <p>1. 左下の<strong> "LOAD CSV" </strong>ボタンをクリックしよう。<small>(見にくくてすまん)</small></p>
+                            <p>2. アプリのショートカットの隣にある<strong> "profile.csv" </strong>をドラッグ&ドロップしてね</p>
+                            <p>3. 読み込めたら、<strong> "SUBMIT CSV" </strong>してね</p>
+                            <video src="../videos/load.mp4" controls preload="auto" class="Video"></video>
+                        </div>
+                    </div>
+                    <div class="Name">
+                        <div class="content">
+                            <h3>発団名を設定する</h3>
+                            <p>保存するファイルを判別したいから、発団名を設定してほしい。</p>
+                            <p>1. <strong> "SETTINGS" </strong>の<strong> "STORE NAME" </strong>をクリックしてね</p>
+                            <p>2. 発団名を入力してね<br>
+                            <small class="text-muted">※半角英数字でお願いします</small></p>
+                            <p>3. <strong>"SUBMIT" </strong>してね</p>
+                            <video src="../videos/name.mp4" controls class="Video"></video>
+                        </div>
+                    </div>
+                    <div class="Read">
+                        <div class="content">
+                            <h3>バーコード読み取り</h3>
+                            <p>とってもシンプルです。</p>
+                            <p>バーコードリーダーでバーコードを読み取ってね</p>
+                            <blockquote class="blockquote text-left">
+                                <strong class="quote">注意点</strong>
+                            </blockquote>
+                            <P class="text-danger">1. 入力欄でカーソルが点滅しているか確認しよう</P>
+                            <p class="text-danger">2. ゲーム券は、<strong>バーコードを通さずに手動で入力してね</strong>⇒<a href="#">言い訳</a></p>
+                            <p><span class="badge badge-default">Ctrl</span>+<span class="badge badge-default">C</span>でコードをコピーしておいて<br>
+                                <span class="badge badge-default">Ctrl</span>+<span class="badge badge-default">V</span>でペースト⇒<span class="badge badge-default">Enter</span>でやると楽</p>
+                            <video src="../videos/read.mp4" controls class="Video"></video>
+                            <h4>ちなみに</h4>
+                            <p>登録されていないコードやEnter空打ちは怒られます</p>
+                            <video src="../videos/fail.mp4" controls class="Video"></video>
+                        </div>
+                    </div>
+                    <div class="Exit">
+                        <div class="content">
+                            <h3>終了時</h3>
+                            <p>左下の<strong> "SAVE AS CSV" </strong>ボタンをクリックしてね</p>
+                            <p>終了するときは必ず保存してね。</p>
+                            <p>ファイルは<strong> "(設定した発団名)[月日_時分].csv" </strong>でダウンロードをフォルダに保存されます<br>
+                            例) <strong>Romorin[0930_2250].csv</strong></p>
+                            <video src="../videos/save.mp4" controls class="Video"></video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="content">
+                    <div class="row">
+                        <nav class="footer-nav">
+                            <ul>
+                                <li>
+                                    <a href="https://github.com/DarthRommy/Mogi_Casher-HTML/" target="_blank">GitHub</a>
+                                </li>
+                                <li>
+                                    <a href="https://demos.creative-tim.com/paper-kit-2/" target="_blank">Paper Kit 2</a>
+                                </li>
+                                <li>
+                                    <a href="../index.html" onclick="window.close()">Back To Software</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <!--   Core JS Files   -->
+        <script src="../paper-kit-2/assets/js/core/jquery.min.js"></script>
+        <script src="../paper-kit-2/assets/js/core/popper.min.js"></script>
+        <script src="../paper-kit-2/assets/js/core/bootstrap.min.js"></script>
+
+        <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+        <script src="../paper-kit-2/assets/js/plugins/bootstrap-switch.js"></script>
+
+        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+        <script src="../paper-kit-2/assets/js/plugins/nouislider.min.js"></script>
+
+        <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+        <script src="../paper-kit-2/assets/js/plugins/moment.min.js"></script>
+        <script src="../paper-kit-2/assets/js/plugins/bootstrap-datepicker.js"></script>
+
+        <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+        <script src="../paper-kit-2/assets/js/paper-kit.min.js"></script>
+
+        <script src="./info.js" ></script>
+
+    </body>
+</html>

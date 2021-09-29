@@ -1,0 +1,71 @@
+#Header {
+    font-size: 7vw;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+.content {
+    max-width: 1140px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content p {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.content span {
+    margin: 0 5px;
+}
+
+.Title {
+    padding-top: 20px;
+}
+
+.Video {
+    width: 90vw;
+    max-width: 1140px;
+}
+
+.quote {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.footer {
+    background-color: #fff;
+    line-height: 36px;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.footer nav>ul>li {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 15px 3px;
+    line-height: 20px;
+    text-align: center;
+}
+
+#Made {
+    font-size: 0.5vw;
+    margin-bottom: 0;
+    position: absolute;
+    top: 95vh;
+    margin-top: -60px;
+    text-align: center;
+}
+
+.adapt {
+    overflow: hidden;
+}

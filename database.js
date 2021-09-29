@@ -212,9 +212,11 @@ function dlCSV() {
     if (pre_data[0].length == 0)
         return
 
+    // カラム行を追加
     pre_data.unshift(["TAG", "CODE", "PRICE", "UNITS"]);
     const data = arrayToStr(pre_data);
 
+    // 発団名を取得
     const store = sessionStorage.getItem("store");
     store == null ? store_ = "default" : store_ = store
     const filename = store_+"["+final+"].csv";
