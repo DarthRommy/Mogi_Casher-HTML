@@ -21,6 +21,14 @@
     margin: 0 5px;
 }
 
+.content span {
+    margin: 0 5px;
+}
+
+.content img {
+    margin-top: 5px;
+}
+
 .Title {
     padding-top: 20px;
 }
@@ -28,6 +36,7 @@
 .Video {
     width: 90vw;
     max-width: 1140px;
+    margin-top: 5px;
 }
 
 .quote {
