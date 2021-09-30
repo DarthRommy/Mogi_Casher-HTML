@@ -21,6 +21,9 @@
     margin: 0 5px;
 }
 
+.content button {
+    margin: 0 5px;
+}
 .Title {
     padding-top: 20px;
 }
@@ -28,6 +31,7 @@
 .Video {
     width: 90vw;
     max-width: 1140px;
+    margin-top: 5px;
 }
 
 .quote {

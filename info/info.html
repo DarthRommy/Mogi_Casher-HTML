@@ -99,9 +99,40 @@
                     <div class="Load">
                         <div class="content">
                             <h3>データを読み込む</h3>
-                            <p>1. 左下の<strong> "LOAD CSV" </strong>ボタンをクリックしよう。<small>(見にくくてすまん)</small></p>
-                            <p>2. アプリのショートカットの隣にある<strong> "profile.csv" </strong>をドラッグ&ドロップしてね</p>
-                            <p>3. 読み込めたら、<strong> "SUBMIT CSV" </strong>してね</p>
+                            <p>1. 左下の
+                                <button class="btn btn-outline-danger btn-sm">
+                                    <i class="nc-icon nc-cloud-upload-94"></i>
+                                    Load CSV
+                                </button>
+                                ボタンをクリックしよう。<small>(見にくくてすまん)</small>
+                            </p>
+                            <p>2. アプリのショートカットの隣にある
+                                <button class="btn btn-neutral btn-primary btn-sm">
+                                    profile.csv
+                                </button>
+                                をドラッグ&ドロップしてね</p>
+                            <p>3. 読み込めたら、
+                                <button class="btn btn-default btn-sm btn-round">
+                                    Submit
+                                </button>
+                                してね
+                            </p>
+                            <h4>なんとなくやりにくい？</h4>
+                            <p>そんな君にとっておきの方法があるんだ</p>
+                            <p>1. ソフトの画面を選んで
+                                <i class="fa fa-windows"></i>
+                                +
+                                <i class="fa fa-arrow-right"></i>
+                            </p>
+                            <p>
+                                2. デスクトップからファイルを引っ張ってくる
+                            </p>
+                            <p>
+                                3. 読み込めたら
+                                <i class="fa fa-windows"></i>
+                                +
+                                <i class="fa fa-arrow-up"></i>
+                            </p>
                             <video src="../videos/load.mp4" controls preload="auto" class="Video"></video>
                         </div>
                     </div>
@@ -109,10 +140,24 @@
                         <div class="content">
                             <h3>発団名を設定する</h3>
                             <p>保存するファイルを判別したいから、発団名を設定してほしい。</p>
-                            <p>1. <strong> "SETTINGS" </strong>の<strong> "STORE NAME" </strong>をクリックしてね</p>
+                            <p>1. 
+                                <button class="btn btn-default btn-sm btn-neutral">
+                                    <i class="nc-icon nc-settings-gear-65"></i>
+                                    Settings
+                                </button>
+                                の
+                                <button class="btn btn-default btn-sm btn-neutral">
+                                    <i class="nc-icon nc-circle-10"></i>
+                                    Store Name
+                                </button>
+                                をクリックしてね</p>
                             <p>2. 発団名を入力してね<br>
                             <small class="text-muted">※半角英数字でお願いします</small></p>
-                            <p>3. <strong>"SUBMIT" </strong>してね</p>
+                            <p>3. 
+                                <button class="btn btn-default btn-sm btn-round">
+                                    Submit
+                                </button>
+                                してね</p>
                             <video src="../videos/name.mp4" controls class="Video"></video>
                         </div>
                     </div>
@@ -120,15 +165,37 @@
                         <div class="content">
                             <h3>バーコード読み取り</h3>
                             <p>とってもシンプルです。</p>
-                            <p>バーコードリーダーでバーコードを読み取ってね</p>
+                            <p>バーコードリーダーでバーコードを読み取ってね
+                            </p>
+                            <video src="../videos/read.mp4" controls class="Video"></video>
                             <blockquote class="blockquote text-left">
                                 <strong class="quote">注意点</strong>
                             </blockquote>
                             <P class="text-danger">1. 入力欄でカーソルが点滅しているか確認しよう</P>
-                            <p class="text-danger">2. ゲーム券は、<strong>バーコードを通さずに手動で入力してね</strong>⇒<a href="#">言い訳</a></p>
-                            <p><span class="badge badge-default">Ctrl</span>+<span class="badge badge-default">C</span>でコードをコピーしておいて<br>
-                                <span class="badge badge-default">Ctrl</span>+<span class="badge badge-default">V</span>でペースト⇒<span class="badge badge-default">Enter</span>でやると楽</p>
-                            <video src="../videos/read.mp4" controls class="Video"></video>
+                            <p class="text-danger">2. ゲーム券は、<strong>バーコードを通さずに手動で入力してね</strong></p>
+                            <p class="text-danger">3. 余分に読み込んでしまわないように間隔をあけて読んでね</p>
+                            <h4>ゲーム券について</h4>
+                            <p>ゲーム券は印刷するときにバーコードを間違えて設定したらしく、バーコードリーダーが読み取ってくれません。</p>
+                            <p><strong>ゲーム券のみ</strong>手打ちで入力してくれ</p>
+                            <h5>おすすめ</h5>
+                            <p>0. 右下の表のうち、ゲーム券のコードをクリック長押しで選択して
+                                <span class="badge badge-default">Ctrl</span>
+                                +
+                                <span class="badge badge-default">C</span>
+                                しておく
+                            </p>
+                            <p>1. ゲーム券を読むときは、入力欄にカーソルが合った状態で
+                                <span class="badge badge-default">Ctrl</span>
+                                +
+                                <span class="badge badge-default">V</span>
+                            </p>
+                            <p>2. 
+                                <span class="badge badge-default">Enter</span>
+                                or
+                                <span class="badge badge-danger">SUBMIT</span>
+                            </p>
+                            <p>3. 以下1-2の繰り返し</p>
+                            <video src="../videos/copy.mp4" controls class="Video"></video>
                             <h4>ちなみに</h4>
                             <p>登録されていないコードやEnter空打ちは怒られます</p>
                             <video src="../videos/fail.mp4" controls class="Video"></video>
@@ -137,11 +204,57 @@
                     <div class="Exit">
                         <div class="content">
                             <h3>終了時</h3>
-                            <p>左下の<strong> "SAVE AS CSV" </strong>ボタンをクリックしてね</p>
-                            <p>終了するときは必ず保存してね。</p>
+                            <p>左下の
+                                <button class="btn btn-outline-primary btn-sm">
+                                    <i class="nc-icon nc-cloud-download-93"></i>
+                                    Save As CSV
+                                </button>
+                                ボタンをクリックしてね
+                            </p>
+                            <p>終了するときは必ず保存してね。あとで回収します</p>
                             <p>ファイルは<strong> "(設定した発団名)[月日_時分].csv" </strong>でダウンロードをフォルダに保存されます<br>
                             例) <strong>Romorin[0930_2250].csv</strong></p>
                             <video src="../videos/save.mp4" controls class="Video"></video>
+                        </div>
+                    </div>
+                    <div class="Howto">
+                        <div class="content">
+                            <h2>こんなときは？</h2>
+                            <p>起こりそうな問題に先に答えておきます</p>
+                        </div>
+                        <div class="NoInput">
+                            <div class="content">
+                                <h3>バーコードを入力したのにエラーが出る</h3>
+                                <p>入力欄のカーソルが点滅しているか確認しよう。点滅していなかったらクリックして点滅させてから読み込んでね</p>
+                                <p>⇒それでもエラーが出る？まあ偽物なんだろうね</p>
+                            </div>
+                        </div>
+                        <div class="Over">
+                            <div class="content">
+                                <h3>余分に読み込んじゃったらしい</h3>
+                                <p class="text-danger"><strong>ミスった枚数メモしとけ。あとで引いといてやるから</strong></p>
+                                <p>とのことです。</p>
+                                <p>気付くだけマシだよ</p>
+                            </div>
+                        </div>
+                        <div class="Second">
+                            <div class="content">
+                                <h3>二日目は何を読み込むんですか</h3>
+                                <p>二日目も最初の
+                                    <button class="btn btn-neutral btn-primary btn-sm">
+                                        profile.csv
+                                    </button>
+                                    を使います。
+                                </p>
+                                <p>「一日ごとの売り上げを見たいから」だそうです。　ಠ╭╮ಠﾅﾆｿﾚ</p>
+                            </div>
+                        </div>
+                        <div class="Unknown">
+                            <div class="content">
+                                <h3>まじで何が起きてるか分かんない</h3>
+                                <p>ろもりんに電話してくれ</p>
+                                <p>模擬部LINEにグラサン付きの黄色いアイコンがいるだろ、そいつだ</p>
+                            </div>
                         </div>
                     </div>
                 </div>
