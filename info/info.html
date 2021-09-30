@@ -93,7 +93,11 @@
                     <div class="Launch">
                         <div class="content">
                             <h3>起動</h3>
-                            <p>デスクトップに作ってある<strong> "Casher" </strong>ショートカットをダブルクリックしてね</p>
+                            <p>デスクトップに作ってある
+                                <span class="badge badge-default">もぎのソフト</span>
+                                ショートカットをダブルクリックしてね
+                            </p>
+                            <img src="../images/screenshot.png">
                         </div>
                     </div>
                     <div class="Load">
@@ -107,9 +111,9 @@
                                 ボタンをクリックしよう。<small>(見にくくてすまん)</small>
                             </p>
                             <p>2. アプリのショートカットの隣にある
-                                <button class="btn btn-neutral btn-primary btn-sm">
+                                <span class="badge badge-default">
                                     profile.csv
-                                </button>
+                                </span>
                                 をドラッグ&ドロップしてね</p>
                             <p>3. 読み込めたら、
                                 <button class="btn btn-default btn-sm btn-round">
@@ -117,23 +121,16 @@
                                 </button>
                                 してね
                             </p>
-                            <h4>なんとなくやりにくい？</h4>
-                            <p>そんな君にとっておきの方法があるんだ</p>
-                            <p>1. ソフトの画面を選んで
-                                <i class="fa fa-windows"></i>
-                                +
-                                <i class="fa fa-arrow-right"></i>
-                            </p>
-                            <p>
-                                2. デスクトップからファイルを引っ張ってくる
-                            </p>
-                            <p>
-                                3. 読み込めたら
-                                <i class="fa fa-windows"></i>
-                                +
-                                <i class="fa fa-arrow-up"></i>
-                            </p>
                             <video src="../videos/load.mp4" controls preload="auto" class="Video"></video>
+                            <h4>やりにくい？</h4>
+                            <p>そんな君にとっておきの方法があるんだ</p>
+                            <p>1. ソフトの画面をつまんで画面の右端で離す</p>
+                            <p>2. デスクトップからファイルを引っ張ってくる</p>
+                            <p>
+                                3. 読み込めたら画面右上の
+                                <i class="fa fa-square-o"></i>
+                                をクリック
+                            </p>
                         </div>
                     </div>
                     <div class="Name">
@@ -152,7 +149,7 @@
                                 </button>
                                 をクリックしてね</p>
                             <p>2. 発団名を入力してね<br>
-                            <small class="text-muted">※半角英数字でお願いします</small></p>
+                            <small class="text-muted">※半角英数字で適当にコードネーム的なのを考えて打ってくれ</small></p>
                             <p>3. 
                                 <button class="btn btn-default btn-sm btn-round">
                                     Submit
@@ -165,7 +162,8 @@
                         <div class="content">
                             <h3>バーコード読み取り</h3>
                             <p>とってもシンプルです。</p>
-                            <p>バーコードリーダーでバーコードを読み取ってね
+                            <p>バーコードリーダーでバーコードを読み取ってね<br>
+                                <small class="text-muted">※この時に紙にもメモするという謎システムのようです</small>
                             </p>
                             <video src="../videos/read.mp4" controls class="Video"></video>
                             <blockquote class="blockquote text-left">
@@ -192,12 +190,14 @@
                             <p>2. 
                                 <span class="badge badge-default">Enter</span>
                                 or
-                                <span class="badge badge-danger">SUBMIT</span>
+                                <button class="btn btn-outline-danger btn-sm">SUBMIT</button>
                             </p>
                             <p>3. 以下1-2の繰り返し</p>
                             <video src="../videos/copy.mp4" controls class="Video"></video>
                             <h4>ちなみに</h4>
-                            <p>登録されていないコードやEnter空打ちは怒られます</p>
+                            <p>登録されていないコードや
+                                <span class="badge badge-default">Enter</span>
+                                空打ちは怒られます</p>
                             <video src="../videos/fail.mp4" controls class="Video"></video>
                         </div>
                     </div>
@@ -211,8 +211,12 @@
                                 </button>
                                 ボタンをクリックしてね
                             </p>
-                            <p>終了するときは必ず保存してね。あとで回収します</p>
-                            <p>ファイルは<strong> "(設定した発団名)[月日_時分].csv" </strong>でダウンロードをフォルダに保存されます<br>
+                            <p class="text-danger">終了するときは必ず保存してね。あとで回収します</p>
+                            <p>ファイルは
+                                <span class="badge badge-default">
+                                    (設定した発団名)[月日_時分].csv
+                                </span>
+                                でダウンロードフォルダに保存されます<br>
                             例) <strong>Romorin[0930_2250].csv</strong></p>
                             <video src="../videos/save.mp4" controls class="Video"></video>
                         </div>
@@ -229,21 +233,50 @@
                                 <p>⇒それでもエラーが出る？まあ偽物なんだろうね</p>
                             </div>
                         </div>
+                        <div class="Ascii">
+                            <div class="content">
+                                <h3>バーコードを読み取ると入力欄にデカい文字が表示される</h3>
+                                <p>文字が全角になってますね。キーボード左上の
+                                    <span class="badge badge-default">
+                                        半角/全角
+                                    </span>
+                                    みたいなキーを一回押してください。
+                                </p>
+                                <p>それから
+                                    <span class="badge badge-default">
+                                        Enter
+                                    </span>
+                                    か
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        Submit
+                                    </button>
+                                    を押すとエラーが出て入力欄がリセットされます。
+                                </p>
+                                <p>
+                                    その後はちゃんと読み取れます。
+                                </p>
+                            </div>
+                        </div>
                         <div class="Over">
                             <div class="content">
-                                <h3>余分に読み込んじゃったらしい</h3>
+                                <h3>余分に読み取っちゃったらしい</h3>
                                 <p class="text-danger"><strong>ミスった枚数メモしとけ。あとで引いといてやるから</strong></p>
                                 <p>とのことです。</p>
-                                <p>気付くだけマシだよ</p>
+                            </div>
+                        </div>
+                        <div class="Close">
+                            <div class="content">
+                                <h3>間違えてタブ閉じちゃった</h3>
+                                <p>あ～っ、だからそういうときのためにブロックするメッセージ出してるのにさ～、なんでそのまま閉じちゃうの～？</p>
                             </div>
                         </div>
                         <div class="Second">
                             <div class="content">
                                 <h3>二日目は何を読み込むんですか</h3>
                                 <p>二日目も最初の
-                                    <button class="btn btn-neutral btn-primary btn-sm">
+                                    <span class="badge badge-default">
                                         profile.csv
-                                    </button>
+                                    </span>
                                     を使います。
                                 </p>
                                 <p>「一日ごとの売り上げを見たいから」だそうです。　ಠ╭╮ಠﾅﾆｿﾚ</p>

@@ -21,9 +21,14 @@
     margin: 0 5px;
 }
 
-.content button {
+.content span {
     margin: 0 5px;
 }
+
+.content img {
+    margin-top: 5px;
+}
+
 .Title {
     padding-top: 20px;
 }
