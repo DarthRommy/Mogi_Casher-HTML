@@ -2,7 +2,7 @@
 
 // タスクキルを阻止
 window.onbeforeunload = function(e) {
-    e.returnValue = "";
+    //e.returnValue = "";
 };
 
 // ----時計----
