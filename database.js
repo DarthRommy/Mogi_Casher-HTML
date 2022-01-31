@@ -1,10 +1,19 @@
 // あまりにも長くなりすぎるので分解しました
-
-// CSV読み込み画面を表示
+/**
+ * Opens "Drop Here" modal
+ */
 function dropFile() {
     $(".dropFile").modal();
 };
 
+/**
+ * Creates table element from given list.
+ * @param {(string | number)[][]} data Double-list transfered from string to array using "strToArray"
+ * @param {string} target The id of the element that you want to insert table
+ * @param {string} tableID The id of the table
+ * @param {boolean} load If this func called in CSV load mode
+ * @returns nothing
+ */
 function makeMainTable(data, target, tableID, load) {
     const element = document.getElementById(target);
 
@@ -44,7 +53,7 @@ function makeMainTable(data, target, tableID, load) {
         } else {
             for (i=0; i<data.length; i++) {
                 let elem = data[i];
-                
+
                 // elemがCSV読み込み時は4列以外なら、それ以外は5列以外ならブロック
                 if ((elem.length != 4 && load) || (elem.length != 5 && !load))
                     throw "Returning";
@@ -73,7 +82,7 @@ function makeMainTable(data, target, tableID, load) {
 
     // input下部の総計に反映
     document.getElementById("total").innerHTML = "¥" + total
-    
+
     // 各列をフォーマット
     for (i=0; i<data.length; i++) {
         let elem = data[i];
@@ -105,16 +114,18 @@ function makeMainTable(data, target, tableID, load) {
             row.appendChild(tdoc)
         };
     };
-    
 };
 
-function submitCSVMain(load){
-    // ------売上表示のTableを作成する------
+/**
+ * Apply data to main table after loading new csv.
+ * @param {boolean} load if this called in "Submit CSV" mode
+ */
+function submitCSV(load){
     const array = strToArray(sessionStorage.getItem("database"));
 
     target = "main-table-area";
     tableID = "main-table";
-    
+
     deleteTables(tableID);
 
     makeMainTable(array, target, tableID, load);
@@ -130,7 +141,7 @@ function deleteTables(id){
 
 // リロード時にTableを再生成
 window.addEventListener("load", function() {
-    submitCSVMain(false);
+    submitCSV(false);
 
     // 発団名を自動読み込み
     const dispName = document.getElementById("name");
@@ -184,14 +195,13 @@ function getFile(files) {
         // テキストの読み込みが完了した際のイベントを登録
         reader.onload = (event) => {
             const text = event.target.result;
-            
+
             const csv = strToArray(text);
             const trash = csv.shift();
 
             makeMainTable(csv, "preview-table-area", "preview-table", true);
         };
     };
-    
 };
 
 // ----CSVでダウンロード----

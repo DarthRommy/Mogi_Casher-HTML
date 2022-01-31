@@ -1,19 +1,22 @@
-/** ----かなり混沌としております---- */
-
-// タスクキルを阻止
-window.onbeforeunload = function(e) {
-    //e.returnValue = "";
+// かなり混沌としております
+// ---- Clock ----
+/**
+ * Calculates given number as two digits.
+ * @param {number} num hours/minuts/seconds
+ * @returns Returns as two digits
+ */
+function twoDigit(num) {
+    let ten;
+    if( num < 10 )
+      ten = "0" + num;
+    else
+      ten = num;
+    return ten;
 };
 
-// ----時計----
-function twoDigit(num) {
-    let ret;
-    if( num < 10 ) 
-      ret = "0" + num; 
-    else 
-      ret = num; 
-    return ret;
-}
+/**
+ * Gets current time and display in the interface.
+ */
 function showClock() {
     let nowTime = new Date();
     let nowHour = twoDigit( nowTime.getHours() );
@@ -24,19 +27,25 @@ function showClock() {
 }
 setInterval('showClock()',1000);
 
-// ----ロード時アニメーション----
+// ---- Animation when loading page ----
 window.addEventListener("load", function() {
     const spinner = document.getElementById('loading');
     spinner.classList.add('loaded');
 })
 
-//---- 入力欄周り ----
+//---- Input interface ----
+/**
+ * Gets list of the codes, browse it, and displays any messages depend on if the code is correct.
+ */
 function display_recent(){
     const recent = document.getElementById("recent-barcode");
     const value = String(document.getElementById("inputBarcode").value);
     const codes = strToArray(sessionStorage.getItem("codes"))[0];
 
-    // 存在するコードならfalse、存在しないならtrue
+    /**
+     * Checks if the input code is correct.
+     * @returns {boolean} "INCORRECT" or not
+     */
     const ifIncludes = function(){
         try {
             const ifincludes = codes.includes(value)
@@ -46,83 +55,109 @@ function display_recent(){
         }
     }
 
-    // 空欄をブロック
+    // Branching
     if (value == ""){
+        // If the input element is empty
+        // Open "No Input" modal
         $(".error-no-input").modal()
-    
-    // 存在しないコードをブロック
-    }else if (ifIncludes()){
+
+    } else if (ifIncludes()){
+        // If the code is incorrect
+        // Open "Unexpected Input" modal
         $(".error-unex-input").modal()
 
-    // 存在する場合
-    }else{
-        // コードの位置を取得
+    } else {
+        // If the code is correct
+        // Gets the location of the code in the "codes" array
         recent.textContent = value;
         const index = codes.indexOf(value);
 
-        // 位置からdatabase内の配列を取得
+        // Gets an array in the "database" for the code
         const database = strToArray(sessionStorage.getItem("database"));
         const selectRow = database[index];
 
-        // databaseを更新
+        // Updates "database"
         selectRow[3] = Number(selectRow[3])+1;
         sessionStorage.setItem("database", arrayToStr(database));
 
-        // databaseからTable作成
-        submitCSVMain(false);
+        // Updates table displayed based on the updated "database"
+        submitCSV(false);
     };
     document.getElementById("inputBarcode").value = "";
 };
-//----そのままEnterを押すとなぜかリロードが入るのでイベントとして処理----
+
+// ---- Sets Username ----
+/**
+ * Opens "Set Store Name" modal
+ */
+function storeName() {
+    $(".storeName").modal();
+
+    // Sets initial value of the input as "store"
+    const target = document.getElementById("inputStoreName");
+    target.value = sessionStorage.getItem("store");
+};
+
+/**
+ * Sets "store" as typed value
+ */
+function submitStoreName(){
+    // Saves store name as sessionstorage
+    const store = document.getElementById("inputStoreName").value;
+    sessionStorage.setItem("store", store);
+
+    // Update text displayed
+    const dispName = document.getElementById("name");
+    dispName.innerHTML = store;
+}
+
+// ---- Misc functions ----
+/**
+ * Resets all of the data
+ */
+function reset() {
+    sessionStorage.clear();
+    window.location.reload();
+};
+
+/**
+ * Blocks reloading/closing tab by user.
+ * @param {*} event idk :(
+ */
+window.onbeforeunload = function(event) {
+    //e.returnValue = "";
+};
+
+/**
+ * Blocks reloading when typing Enter
+ * @param {*} event idk *(
+ */
 window.document.onkeydown = function(event){
     if (event.key === "Enter") {
         display_recent();
     }
 };
 
-// ----発団名を登録----
-function storeName() {
-    $(".storeName").modal();
-
-    // 登録済みの発団名を打ち込んだ状態で起動
-    const target = document.getElementById("inputStoreName");
-    target.value = sessionStorage.getItem("store");
-};
-
-function submitStoreName(){
-    // storeに発団名を登録
-    const store = document.getElementById("inputStoreName").value;
-    sessionStorage.setItem("store", store);
-
-    // 発団名表示エリアを更新
-    const dispName = document.getElementById("name");
-    dispName.innerHTML = store;
-}
-
-// ----リセット----
-function reset() {
-    sessionStorage.clear();
-    window.location.reload();
-};
-
-// ----文字列⇒配列----
-function strToArray (origin) {
-    /*
-    文字列を配列に変換する
-    引数: 文字列
-    戻り値: 配列
-    */
+/**
+ * Transforms string as array
+ * @param {string} origin needs "\r\n" splitter
+ * @returns {string[][]} array-transformed original data
+ */
+function strToArray(origin) {
     try{
         const after = origin.split("\r\n").map((elem) => elem.split(","));
         return after
     } catch(e) {
-        // onloadで呼び出すsubmitCSVにエラーを吐かせない
         return []
     }
 };
 
-// ----配列⇒文字列----
-function arrayToStr (origin) {
+/**
+ * Transforms array as string
+ * @param {string[][]} origin has to be dual-array
+ * @returns {string} string-transformed original data
+ */
+function arrayToStr(origin) {
     try {
         const after = origin.map((elem) => elem.join(",")).join("\r\n");
         return after;
@@ -132,16 +167,14 @@ function arrayToStr (origin) {
     }
 };
 
-// 画面のサイズに合わせてレイアウトを変更
 function changeLayout() {
-    // ウィンドウの幅と高さを取得
     const width = window.innerWidth;
     const height = window.innerHeight;
 
     const mainTable = document.getElementById("main-table-area");
     const credit = document.getElementsByClassName("credit")[0];
 
-    // main-tableの表示/非表示
+    // main-table
     if (width < 800 || (width < 1340 && height < 800) || height < 470) {
         mainTable.classList.add("hidden");
     } else {
@@ -156,24 +189,28 @@ function changeLayout() {
     }
 };
 
-// 読み込み時に実行
+// Executes changeLayout when loading page
 window.addEventListener("load", function(){
     changeLayout();
 });
 
-// サイズ変更時に実行
+// Executes changeLayout when user changed window size
 window.addEventListener("resize", function() {
     changeLayout();
 });
 
-// vercel上ではプレビュー通知
+/**
+ * Determines from the domain whether to show "notice" modal or not
+ */
 function hostName() {
     const hostname = location.hostname;
 
+    // If the page is running on Vercel
     if ( hostname.match("vercel.app"))
         $("#notice").modal();
 };
 
+// Executes hostName when loading page
 window.addEventListener("load", function(){
     hostName();
 });
